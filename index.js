@@ -23,9 +23,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-app.use("api/user", userRouter);
-app.use("api/product", productRouter);
-app.use("api/customer", paymentRoutes);
+app.use("/api", userRouter);
+app.use("/api", productRouter);
+app.use("/api", paymentRoutes);
 app.use(express.static(path.join(__dirname, "/public")));
 
 //handling err

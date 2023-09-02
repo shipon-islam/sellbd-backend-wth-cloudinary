@@ -10,27 +10,32 @@ const {
   productUpdate,
   productDelete,
   getAllProduct,
+  getQueryProduct,
+  getProductById,
 } = require("../controlers/productControler");
 
-//@Desc: Adding New Product         @Route: product/add
+//@Desc: Adding New Product         @Route: api/product/add
 //@Access: Private                  @Method: POST
-router.post("/add", protect, uploadFile("/images/product"), addProduct);
+router.post("/product", protect, uploadFile("/images/product"), addProduct);
 
-//@Desc: Update Existing Product   @Route: product/update/:id
+//@Desc: Update Existing Product   @Route: api/product/update/:id
 //@Access: Private                  @Method: PUT
 router.put(
-  "/update/:id",
+  "/product/:id",
   protect,
   uploadFile("/images/product"),
   productUpdate
 );
 
-//@Desc: Delete Existing Product   @Route: product/delete/:id
+//@Desc: Delete Existing Product   @Route: api/product/delete/:id
 //@Access: private                 @Method: DELETE
-router.delete("/delete/:id", protect, productDelete);
+router.delete("/product/:id", protect, productDelete);
 
-//@Desc: Get All Product         @Route: product/get/all
+//@Desc: Get All Product         @Route: api/product/get/all
 //@Access: Public                 @Method: GET
-router.get("/get/all", getAllProduct);
+router.get("/products", getQueryProduct);
+//@Desc: Get All Product         @Route: api/product/get/all
+//@Access: Public                 @Method: GET
+router.get("/product/:id", getProductById);
 
 module.exports = router;

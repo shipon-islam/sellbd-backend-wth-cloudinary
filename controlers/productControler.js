@@ -117,10 +117,32 @@ const getAllProduct = async (req, res, next) => {
     next(error);
   }
 };
+//@Desc: Get All Product         @Route: product?query=""
+//@Access: Public                 @Method: GET
+const getQueryProduct = async (req, res, next) => {
+  try {
+    const products = await productModel.find(req.query);
+    res.send(products);
+  } catch (error) {
+    next(error);
+  }
+};
+//@Desc: Get Product By Id         @Route: product/:id
+//@Access: Public                 @Method: GET
+const getProductById = async (req, res, next) => {
+  try {
+    const product = await productModel.findById(req.params.id);
+    res.send(product);
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   addProduct,
   productDelete,
   productUpdate,
   getAllProduct,
+  getQueryProduct,
+  getProductById,
 };
