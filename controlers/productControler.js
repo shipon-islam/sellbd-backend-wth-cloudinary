@@ -120,9 +120,27 @@ const getAllProduct = async (req, res, next) => {
 //@Desc: Get All Product         @Route: product?query=""
 //@Access: Public                 @Method: GET
 const getQueryProduct = async (req, res, next) => {
+  const { category } = req.query;
   try {
-    const products = await productModel.find(req.query);
-    res.send(products);
+    if (category == "new") {
+      const products = await productModel.find().sort({ timestamp: -1 });
+      res.send(products);
+    } else if (category == "tending") {
+      const products = await productModel.find(req.query);
+      res.send(products);
+    } else if (category == "technology") {
+      const products = await productModel.find(req.query);
+      res.send(products);
+    } else if (category == "fashion") {
+      const products = await productModel.find();
+      res.send(products);
+    } else if (category == "clothes") {
+      const products = await productModel.find();
+      res.send(products);
+    } else {
+      const products = await productModel.find(req.query);
+      res.send(products);
+    }
   } catch (error) {
     next(error);
   }
