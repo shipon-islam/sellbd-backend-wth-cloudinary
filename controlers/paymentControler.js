@@ -55,7 +55,9 @@ const paymentStatus = async (req, res, next) => {
 //@Access: Private                    @Method: GET
 const getPayment = async (req, res, next) => {
   try {
-    const payments = await paymentModel.find({ user: req.user._id });
+    const payments = await paymentModel
+      .find({ user: req.user._id })
+      .sort({ date: -1 });
     res.send(payments);
   } catch (error) {
     res.status(400).json({ message: "something went wrong" });
@@ -65,7 +67,7 @@ const getPayment = async (req, res, next) => {
 //@Access: Private                    @Method: GET
 const getPaymentAll = async (req, res, next) => {
   try {
-    const payments = await paymentModel.find();
+    const payments = await paymentModel.find().sort({ date: -1 });
     res.send(payments);
   } catch (error) {
     res.status(400).json({ message: "something went wrong" });
