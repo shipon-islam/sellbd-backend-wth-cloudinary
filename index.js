@@ -19,7 +19,9 @@ const paymentRoutes = require("./Routes/paymentRoutes");
 //port setup
 const PORT = process.env.PORT || 5000;
 const corsOptions = {
-  origin: '*', // Allow all origins
+  origin: 'https://sellbd.onrender.com', // Replace with your frontend's origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Specify allowed HTTP methods
+  allowedHeaders: 'Content-Type,Authorization', // Specify allowed headers
 };
 //parse body setup
 app.use(express.urlencoded({ extended: true }));
