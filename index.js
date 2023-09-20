@@ -18,10 +18,13 @@ const productRouter = require("./Routes/productRoute");
 const paymentRoutes = require("./Routes/paymentRoutes");
 //port setup
 const PORT = process.env.PORT || 5000;
+const corsOptions = {
+  origin: '*', // Allow all origins
+};
 //parse body setup
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use("/api", userRouter);
 app.use("/api", productRouter);
